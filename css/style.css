@@ -1,0 +1,13 @@
+html, body {margin: 0; padding: 0}
+
+#wrapper {}
+#wrapper ul {border: 1px solid #cccccc; padding: 0}
+#wrapper ul li {list-style-type: none; border: 1px solid #cccccc; margin: 10px; padding: 5px; position: relative}
+
+.track {height: 42px; position: relative}
+
+.name {float: left; position: absolute; left: 70px; margin-top: 11px; text-transform: uppercase}
+.time {float: left; position: absolute; left: 10px; margin-top: 11px;}
+.place {font-size: 22px; margin-left: -20px; margin-top: 8px; position: absolute;}
+
+.coockroach {background: url('../img/coockroach.png'); width: 54px; height: 41px;}
