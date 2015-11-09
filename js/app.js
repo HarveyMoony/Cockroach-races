@@ -1,10 +1,8 @@
 
 
-define("app", ["Roach", "stage"], function(Roach, stage) {
+define("app", ["stage", "Roach"], function(stage, Roach) {
 
     var roachesGroup = {};
-
-    var place = 0;
 
     for(var i = 0; i < roaches.length; i++){
         roachesGroup[roaches[i].id] = new Roach(roaches[i]);
@@ -19,7 +17,7 @@ define("app", ["Roach", "stage"], function(Roach, stage) {
     document.addEventListener('keydown', function(e) {
         if(e.keyCode == 32) {
             for(var key in roachesGroup) {
-                roachesGroup[key].wait();
+                roachesGroup[key].run(stage.distance);
                 stage.begin = 'on';
             }
         }

@@ -2,15 +2,15 @@
 define('stage', function() {
 
     var api = {
-        size: document.getElementsByClassName('track')[0].offsetWidth,
+        distance: document.getElementsByClassName('track')[0].offsetWidth,
         begin: 'off',
-        getSize: getSize
+        getSize: getDistance
     };
 
     return api;
 
 
-    function getSize() {
+    function getDistance() {
         return document.getElementsByClassName('track')[0].offsetWidth
     }
 

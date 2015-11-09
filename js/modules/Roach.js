@@ -3,12 +3,12 @@
  **/
 define(
     'Roach',
+    ['underscore'],
     function(){
 
-        function Roach() {
+        function Roach(args) {
 
-            var args = arguments,
-                template = '<div id="' + this.id + '" class="coockroach"></div>';
+            var tmpl = '<div id="' + this.id + '" class="coockroach"></div>';
 
             this.id = args.id || 'r1';
             this.name = args.name || 'Micky';
@@ -18,31 +18,30 @@ define(
             this.reaction = args.reaction || 5;
         }
 
-        Roach.prototype.run = function() {
-            var startTime = new Date();
+        Roach.prototype.run = function(distance) {
+            console.log(this);
 
-            var running = setTimeout(function tick() {
-                if (this.position + 60 > square.size){
-                    place++;
-                    var time = new Date() - startTime;
-                    document.querySelector('#'+args.id).innerHTML = "<p class='place'>" + place + "</p>";
-                    document.querySelector('.coockroach')[args.id].parentElement.parentElement.children[0].innerHTML = time/1000
-                } else {
-                    this.position += Math.random() * this.speed;
-                    document.querySelector('#'+this.id).style.marginLeft = this.position + 'px';
-                    running = setTimeout(tick, 5)
-                }
-            }, 5)
+            var self = this,
+                startTime = new Date();
+
+            setTimeout(function() {
+                var running = setTimeout(function tick() {
+                    if (self.position + 60 > distance){
+                        self.finish(startTime)
+                    } else {
+                        self.position += Math.random() * self.speed;
+                        document.querySelector('#'+self.id).style.marginLeft = self.position + 'px';
+                        running = setTimeout(tick, 5)
+                    }
+                }, 10 )
+            }, 0);
         };
 
-        Roach.prototype.wait = function() {
-            var _waiting = setInterval(waiting, this.reaction);
-            function waiting() {
-                if(square.begin == 'on') {
-                    this.run();
-                    clearInterval(_waiting)
-                }
-            }
+        Roach.prototype.finish = function(startTime) {
+            self.place += 1;
+            var time = new Date() - startTime;
+            document.querySelector('#'+self.id).innerHTML = "<p class='place'>" + self.place + "</p>";
+            document.querySelector('.coockroach')[self.id].parentElement.parentElement.children[0].innerHTML = time/1000
         };
 
         return Roach;
