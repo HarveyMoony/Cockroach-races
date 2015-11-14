@@ -9,20 +9,16 @@ define("app", ["stage", "Roach"], function(stage, Roach) {
         document.getElementsByClassName('name')[i].innerHTML = roaches[i].name;
     }
 
-    var btnStart = document.querySelector('#btn-start');
-    btnStart.addEventListener('click', function(){
-        stage.begin = 'on'
-    });
+    document.addEventListener('keydown', start);
 
-    document.addEventListener('keydown', function(e) {
+    function start(e) {
         if(e.keyCode == 32) {
             for(var key in roachesGroup) {
                 roachesGroup[key].run(stage.distance);
                 stage.begin = 'on';
             }
+            document.removeEventListener('keydown', start);
         }
-    });
+    }
 
 });
-
-
